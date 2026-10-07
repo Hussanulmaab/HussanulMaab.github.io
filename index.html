@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name · Blog</title>
+<meta name="description" content="Interactive blog about color, light, and the math behind what we see.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@500;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div class="avatar"><span>YN</span></div>
+    <div>
+      <h1>Your Name</h1>
+      <p>Writing about color, light, and the math behind what we see.</p>
+    </div>
+    <nav>
+      <a href="#/">Intro</a>
+      <a href="#/blog">Blog</a>
+      <a href="#/about">About</a>
+    </nav>
+    <div class="social">
+      <a href="#">GitHub</a><a href="#">Twitter</a><a href="#">Email</a>
+    </div>
+  </aside>
+  <main id="app"></main>
+</div>
+
+<template id="t-home">
+  <h1>Hi, I'm Your Name</h1>
+  <p class="meta">Welcome to my corner of the internet.</p>
+  <p>This is where I write long-form, interactive posts about things I find beautiful and want to understand better. Most posts come with small playgrounds so you can poke at the ideas yourself.</p>
+  <p>Start with my first post: <a href="#/blog/color-codes">From hex codes to color cubes</a>.</p>
+</template>
+
+<template id="t-about">
+  <h1>About</h1>
+  <p>Replace this with a few paragraphs about yourself: where you study or work, what you're curious about, and how people can reach you.</p>
+</template>
+
+<template id="t-blog">
+  <h1>Blog</h1>
+  <ul class="post-list">
+    <li><a href="#/blog/color-codes">From hex codes to color cubes</a>
+      <p>What <code>#FF5733</code> actually means, and why every color on your screen lives inside a 3D cube.</p></li>
+  </ul>
+</template>
+
+<template id="t-post">
+  <h1>From hex codes to color cubes</h1>
+  <p class="meta">October 2026 · 8 min read</p>
+
+  <p>If you have ever touched CSS, a design tool, or a paint app, you have seen strings like <code>#FF5733</code>. They look cryptic, but they are just three numbers wearing a disguise. Once you see them as numbers, a much nicer picture appears: every color your screen can show is a point inside a cube.</p>
+
+  <h2>Light, not paint</h2>
+  <p>Your screen is a grid of tiny lights, and each pixel has three of them: red, green and blue. Mixing light is <em>additive</em>. Red plus green light gives yellow, all three at full strength give white, and all three off give black. So to describe a color, we only need to say how bright each of the three lights should be.</p>
+
+  <h2>Three numbers from 0 to 255</h2>
+  <p>Computers usually store each brightness in one byte, which holds 256 values: 0 (off) to 255 (full). That gives 256 × 256 × 256 ≈ 16.7 million colors. Drag the sliders and watch the codes change.</p>
+
+  <figure class="panel">
+    <div class="mixer">
+      <div class="swatch" id="sw"></div>
+      <div>
+        <label class="slider"><span>R</span><input type="range" min="0" max="255" id="r" value="255"><output id="ro"></output></label>
+        <label class="slider"><span>G</span><input type="range" min="0" max="255" id="g" value="87"><output id="go"></output></label>
+        <label class="slider"><span>B</span><input type="range" min="0" max="255" id="b" value="51"><output id="bo"></output></label>
+      </div>
+    </div>
+    <div class="bytes"><span>#</span><span id="hr" style="background:#c22"></span><span id="hg" style="background:#1a8a3a"></span><span id="hb" style="background:#2558c9"></span></div>
+    <div class="readout"><span id="rgb"></span><span id="hsl"></span></div>
+    <figcaption>Each pair of hex digits is one byte: one channel's brightness.</figcaption>
+  </figure>
+
+  <h2>Why hexadecimal?</h2>
+  <p>Hexadecimal is base 16, using digits <code>0–9</code> and <code>A–F</code>. Two hex digits cover exactly 16 × 16 = 256 values, so one byte always fits in two characters. <code>FF</code> is 15 × 16 + 15 = 255, and <code>57</code> is 5 × 16 + 7 = 87. So <code>#FF5733</code> is simply <code>rgb(255, 87, 51)</code>: red fully on, a bit of green, a little blue. A warm orange.</p>
+  <p>The shorthand <code>#F53</code> doubles each digit, becoming <code>#FF5533</code>. An eight-digit code like <code>#FF573380</code> adds a fourth byte for transparency (alpha).</p>
+
+  <h2>Three numbers means three dimensions</h2>
+  <p>Here is the key idea. A color is three numbers, and three numbers are exactly the coordinates of a point in 3D space. Put red on one axis, green on another and blue on the third, and every possible color fills a cube. Black sits at one corner <code>(0,0,0)</code>, white at the opposite corner <code>(255,255,255)</code>, and the diagonal between them holds every shade of gray.</p>
+
+  <figure class="panel">
+    <canvas id="cube" aria-label="Interactive 3D RGB color cube. Drag to rotate."></canvas>
+    <div class="btns" role="group" aria-label="View">
+      <button data-mode="cube" aria-pressed="true">RGB cube</button>
+      <button data-mode="hsl" aria-pressed="false">HSL cylinder</button>
+      <button id="spin" aria-pressed="true">Auto-rotate</button>
+    </div>
+    <figcaption>Drag to rotate. The white ring marks the color from the sliders above.</figcaption>
+  </figure>
+
+  <p>Corners of the cube are the "pure" colors: red, green, blue, and their pairwise mixes cyan, magenta and yellow. Moving along an edge fades one channel in or out.</p>
+
+  <h2>Same colors, different shape: HSL</h2>
+  <p>RGB is how the hardware thinks, but not how people do. We tend to describe color by its <strong>hue</strong> (which color), <strong>saturation</strong> (how vivid) and <strong>lightness</strong> (how bright). HSL rearranges the very same cube into a cylinder: hue goes around the circle as an angle, saturation is the distance from the center, and lightness is the height. Switch the view above to see the cube's colors reshaped. Notice the gray diagonal of the cube has become the central axis.</p>
+
+  <h2>Where the cube falls short</h2>
+  <p>Equal steps in RGB do not look like equal steps to our eyes. A jump in green looks much bigger than the same jump in blue. Color scientists built spaces like CIELAB and OKLab to fix this: they are also 3D, but shaped so that distance roughly matches how different two colors <em>look</em>. That will be the subject of a future post.</p>
+
+  <h2>Recap</h2>
+  <p>A hex code is three bytes. Three bytes are three coordinates. Three coordinates put every screen color inside a cube, and other color models like HSL are just different ways of bending that same space into shapes that match how we think.</p>
+
+  <footer>© 2026 Your Name</footer>
+</template>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
