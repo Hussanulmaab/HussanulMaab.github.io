@@ -1,16 +1,35 @@
-# My blog
+# blog.maab.dev
 
-Personal blog with interactive posts. First post: **From hex codes to color cubes**.
+Personal site of Hussan ul Maab — built with [Jekyll] and the [Hydejack] theme,
+deployed to GitHub Pages by the workflow in `.github/workflows/pages.yml`.
 
-## Files
-- `index.html` – all pages and blog post text (look for `<template id="t-post">`)
-- `assets/style.css` – colors, fonts, layout
-- `assets/main.js` – page navigation, color mixer, 3D color cube (three.js)
+## Editing
 
-## Edit
-- Your name, bio, links: search `Your Name` in `index.html`
-- Blog text: edit inside `<template id="t-post">`
+| What | Where |
+|---|---|
+| Name, tagline, nav menu, colours | `_config.yml` |
+| Bio, photo, social links | `_data/authors.yml` |
+| Intro page | `index.md` |
+| Publications | `publications.md` |
+| Talks | `talks.md` |
+| CV page (drop the PDF at `assets/cv.pdf`) | `cv.md` |
+| Blog posts | `_posts/YYYY-MM-DD-title.md` |
+| Extra CSS | `_sass/my-style.scss` |
 
-## Publish
-Settings → Pages → Source: "Deploy from a branch" → Branch: `main` / `(root)` → Save.
-Site goes live at `https://<username>.github.io/`.
+## Running locally
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+Then open <http://localhost:4000>.
+
+## Deploying
+
+Push to `main`. In **Settings → Pages**, set **Source** to **GitHub Actions**
+(not "Deploy from a branch") — the workflow handles the rest. The `CNAME` file
+keeps the custom domain `blog.maab.dev` pointed at the site.
+
+[jekyll]: https://jekyllrb.com
+[hydejack]: https://hydejack.com

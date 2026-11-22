@@ -1,0 +1,26 @@
+author1:
+  name:              Hussan ul Maab
+  email:             maab431@khu.ac.kr
+
+  about:             |
+    Master's researcher in the Department of Electronics and Information
+    Convergence Engineering at **Kyung Hee University**, advised by
+    Prof. Hyundong Shin. I work on **quantum error correction** — currently
+    tensor network decoders for three-dimensional color codes.
+
+    Edit this blurb in `_data/authors.yml`.
+
+  # Drop a square photo at assets/img/profile.jpg and it will appear here
+  # and in the sidebar.
+  picture:
+    path:            /assets/img/profile.jpg
+    srcset:
+      1x:            /assets/img/profile.jpg
+      2x:            /assets/img/profile.jpg
+
+  social:
+    github:          Hussanulmaab
+    email:           maab431@khu.ac.kr
+    # linkedin:      <firstname-lastname-string>
+    # twitter:       <username>
+    # rss:           https://blog.maab.dev/feed.xml

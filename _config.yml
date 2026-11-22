@@ -1,0 +1,76 @@
+# Site configuration for hussanulmaab.github.io  (served at blog.maab.dev)
+# ========================================================================
+
+url:                   https://blog.maab.dev
+baseurl:               ''
+
+lang:                  en
+
+title:                 Hussan ul Maab
+
+description:           >
+  Quantum error correction researcher. Tensor network decoding of
+  3D color codes at Kyung Hee University.
+
+tagline:               >
+  Master's researcher in quantum error correction at Kyung Hee University,
+  working on tensor network decoders for 3D color codes.
+
+keywords:              [quantum error correction, tensor networks, color codes, quantum computing, decoders]
+
+author:
+  name:                Hussan ul Maab
+  email:               maab431@khu.ac.kr
+
+# Sidebar navigation
+menu:
+  - title:             Blog
+    url:               /blog/
+  - title:             Publications
+    url:               /publications/
+  - title:             Talks
+    url:               /talks/
+  - title:             CV
+    url:               /cv/
+
+legal:                 []
+
+copyright:             © 2026 Hussan ul Maab.
+
+permalink:             /blog/:year-:month-:day-:title/
+
+
+theme:                 jekyll-theme-hydejack
+
+# Look
+accent_color:          rgb(79,177,186)
+theme_color:           rgb(25,55,71)
+
+defaults:
+  - scope:
+      path:            assets/
+    values:
+      sitemap:         false
+
+kramdown:
+  math_engine:         katex
+  math_engine_opts:    {}
+  footnote_backlink:   '&#x21a9;&#xfe0e;'
+
+hydejack:
+  post_addons:         [about, related]
+  no_mark_external:    false
+  # Full page loads: keeps per-post <script> blocks (e.g. the three.js cube) reliable.
+  no_push_state:       true
+  no_drawer:           false
+  no_navbar:           false
+  no_search:           false
+  no_inline_css:       false
+  no_page_style:       false
+  no_break_layout:     true
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
