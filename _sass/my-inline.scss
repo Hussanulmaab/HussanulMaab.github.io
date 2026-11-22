@@ -1,35 +1,42 @@
 // Site overrides, inlined into every page so they apply before first paint.
-// Imported by Hydejack after all of its own styles, so these rules win.
+// Hydejack imports this after all of its own styles, so these rules win.
 // ---------------------------------------------------------------------------
 
 // --- Sidebar portrait -------------------------------------------------------
-// Theme default is a 7rem circle. Make it a rectangle, and zoom into the face
-// with CSS so the original photo file is used untouched.
-.sidebar-about .avatar {
+// The theme's sidebar markup is:  <a class="no-hover"><img class="avatar"></a>
+// so `.avatar` IS the image, not a wrapper. The link becomes the clipping
+// frame; the image fills it with `cover` (no stretching) and is zoomed into
+// the face with a transform, so the original photo file stays untouched.
+
+.sidebar-about > a.no-hover {
+  display: block;
   width: 11rem;
   height: 14rem;
-  border-radius: 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
   box-shadow: 0 .5rem 1.75rem rgba(0, 0, 0, .6);
   outline: 1px solid rgba(255, 255, 255, .14);
   outline-offset: -1px;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 53% 45%;
-    transform: scale(2.45);
-    transform-origin: 53% 45%;
-  }
+.sidebar-about .avatar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 0;          // rectangle, not the theme's circle
+  margin-bottom: 0;          // the frame above carries the spacing
+  object-fit: cover;         // fill the frame without distorting
+  object-position: 53% 45%;
+  transform: scale(2.45);    // zoom to the face
+  transform-origin: 53% 45%;
 }
 
 // --- Sidebar background scrim ----------------------------------------------
-// The photo stays sharp; this only darkens it so the name, tagline and nav
-// stay readable over the book spines.
+// Darkens the library photo so the name, tagline and nav stay readable.
+// This darkens only — it does not blur. The photo stays at full sharpness.
+
 .sidebar-bg.sidebar-overlay::after {
   background: linear-gradient(
     to bottom,
