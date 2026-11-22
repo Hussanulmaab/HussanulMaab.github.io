@@ -8,13 +8,7 @@ author1:
     Prof. Hyundong Shin. I work on **quantum error correction** — currently
     tensor network decoders for three-dimensional color codes.
 
-  # Drop a square photo at assets/img/profile.jpg and it will appear here
-  # and in the sidebar.
-  picture:
-    path:            /assets/img/profile.jpg
-    srcset:
-      1x:            /assets/img/profile.jpg
-      2x:            /assets/img/profile.jpg
+  picture:          /assets/img/profile_blog.jpeg
 
   social:
     github:          Hussanulmaab
