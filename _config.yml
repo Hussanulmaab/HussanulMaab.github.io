@@ -44,7 +44,7 @@ theme:                 jekyll-theme-hydejack
 
 # Look
 logo:                  /assets/img/profile_blog.jpeg
-accent_image:          /assets/img/library_bg.jpg
+accent_image:          /assets/img/library_background_blog.jpg
 accent_color:          rgb(79,177,186)
 theme_color:           rgb(25,55,71)
 
@@ -60,6 +60,11 @@ kramdown:
   footnote_backlink:   '&#x21a9;&#xfe0e;'
 
 hydejack:
+  # Dark on every page, always. No toggle, so pages can't differ.
+  dark_mode:
+    always:            true
+    icon:              false
+
   post_addons:         [about, related]
   no_mark_external:    false
   # Full page loads: keeps per-post <script> blocks (e.g. the three.js cube) reliable.
