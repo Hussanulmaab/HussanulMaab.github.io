@@ -1,7 +1,7 @@
 # Site configuration for hussanulmaab.github.io  (served at blog.maab.dev)
 # ========================================================================
 
-url:                   https://blog.maab.dev
+url:                   https://hussanulmaab.github.io
 baseurl:               ''
 
 lang:                  en

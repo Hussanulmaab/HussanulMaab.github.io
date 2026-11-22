@@ -8,8 +8,6 @@ author1:
     Prof. Hyundong Shin. I work on **quantum error correction** — currently
     tensor network decoders for three-dimensional color codes.
 
-    Edit this blurb in `_data/authors.yml`.
-
   # Drop a square photo at assets/img/profile.jpg and it will appear here
   # and in the sidebar.
   picture:
