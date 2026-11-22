@@ -43,7 +43,8 @@ permalink:             /blog/:year-:month-:day-:title/
 theme:                 jekyll-theme-hydejack
 
 # Look
-accent_image:          /assets/img/library_background_blog.avif
+logo:                  /assets/img/profile_blog.jpeg
+accent_image:          /assets/img/library_bg.jpg
 accent_color:          rgb(79,177,186)
 theme_color:           rgb(25,55,71)
 

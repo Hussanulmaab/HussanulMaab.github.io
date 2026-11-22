@@ -8,15 +8,9 @@ description: >
 hide_description: true
 ---
 
-# Intro
-
-<!--author-->
-
 I'm a master's researcher in the Department of Electronics and Information
 Convergence Engineering at **Kyung Hee University**, in the group of
-Prof. Hyundong Shin.
-
-My work sits in **quantum error correction**. My thesis develops tensor
+Prof. Hyundong Shin. My work sits in **quantum error correction**. My thesis develops tensor
 network decoders for **three-dimensional color codes** — using tensor network
 contraction to approximate maximum-likelihood decoding on a code family whose
 3D structure makes the usual matching-based decoders awkward to apply.
