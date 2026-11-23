@@ -10,14 +10,14 @@
 
 .sidebar-about > a.no-hover {
   display: block;
-  width: 11rem;
-  height: 14rem;
+  width: 6rem;
+  height: 9rem;
   margin: 0 auto 1.5rem;
   overflow: hidden;
   position: relative;
   z-index: 1;
-  box-shadow: 0 .5rem 1.75rem rgba(0, 0, 0, .6);
-  outline: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 0.5rem 1.75rem rgba(0, 0, 0, 0.6);
+  outline: 1px solid rgba(255, 255, 255, 0.14);
   outline-offset: -1px;
 }
 
@@ -25,11 +25,11 @@
   width: 100%;
   height: 100%;
   display: block;
-  border-radius: 0;          // rectangle, not the theme's circle
-  margin-bottom: 0;          // the frame above carries the spacing
-  object-fit: cover;         // fill the frame without distorting
+  border-radius: 0; // rectangle, not the theme's circle
+  margin-bottom: 0; // the frame above carries the spacing
+  object-fit: cover; // fill the frame without distorting
   object-position: 53% 45%;
-  transform: scale(2.45);    // zoom to the face
+  transform: scale(2.45); // zoom to the face
   transform-origin: 53% 45%;
 }
 
@@ -40,9 +40,181 @@
 .sidebar-bg.sidebar-overlay::after {
   background: linear-gradient(
     to bottom,
-    rgba(14, 19, 26, .55) 0%,
-    rgba(14, 19, 26, .86) 40%,
-    rgba(14, 19, 26, .86) 68%,
-    rgba(14, 19, 26, .55) 100%
+    rgba(14, 19, 26, 0.55) 0%,
+    rgba(14, 19, 26, 0.86) 40%,
+    rgba(14, 19, 26, 0.86) 68%,
+    rgba(14, 19, 26, 0.55) 100%
   );
+}
+
+// --- Post header ------------------------------------------------------------
+// Hide the date and tag line on an individual post page. Scoped to
+// .layout-post so the dates on the blog index are untouched.
+
+.layout-post .post-date {
+  display: none;
+}
+
+// --- Heading colour ---------------------------------------------------------
+// The theme gives headings the same grey as body text, so a heading and a
+// paragraph look identical. Brighten them to restore hierarchy.
+
+.content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #111315;
+  }
+}
+
+.dark-mode .content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #f2f3f4;
+  }
+}
+
+// --- Display maths ----------------------------------------------------------
+// Hydejack styles display equations like a code block: grey panel, 2rem
+// padding, negative side margins and `overflow-x: auto`. The overflow makes
+// the container a scroll box, and MathJax's internal layout then reports more
+// height than the box has, so a vertical scrollbar appears on every equation.
+// Strip all of it and let equations sit plainly on the page, centred.
+// Higher specificity than the theme's rule, so it wins regardless of order.
+
+.content article .katex-display,
+.content article mjx-container[jax][display="true"] {
+  margin: 1.75rem 0;
+  padding: 0;
+  background-color: transparent;
+  overflow: visible;
+  outline: none;
+}
+
+// --- Expand background ------------------------------------------------------
+// A tab on the sidebar's right edge that opens a full-screen view of the
+// library photo, with the name and nav cloned on top. Desktop only: below
+// 64em the sidebar is already a full-width drawer.
+
+.cover-btn {
+  display: none;
+  position: fixed;
+  top: 50%;
+  z-index: 40;
+  width: 1.5rem;
+  height: 3.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: rgba(14, 19, 26, 0.8);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 150ms ease;
+
+  &:hover { background: rgba(14, 19, 26, 0.95); }
+
+  .cover-btn-arrow {
+    display: block;
+    transition: transform 200ms ease;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .cover-btn { display: block; }
+}
+
+body.cover-open .cover-btn .cover-btn-arrow {
+  transform: rotate(180deg);
+}
+
+// Slides in from the left, so it reads as the sidebar growing outwards.
+// `display` cannot be transitioned, so visibility is toggled with a delay
+// instead and the movement is done with a transform.
+.cover-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 380ms;
+}
+
+body.cover-open {
+  overflow: hidden;
+
+  .cover-overlay {
+    visibility: visible;
+    transform: none;
+    transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0s;
+  }
+
+  // Hide the real sidebar once the overlay has slid over it, or its name and
+  // nav show through beside the cloned copy. Delayed so the sidebar stays put
+  // during the slide and the two appear to be the same panel expanding.
+  #_drawer {
+    visibility: hidden;
+    transition: visibility 0s linear 380ms;
+  }
+}
+
+#_drawer {
+  transition: visibility 0s linear 0s;
+}
+
+// --- Navbar -----------------------------------------------------------------
+// The strip along the top holds the hamburger, which only opens the drawer on
+// narrow screens. On desktop the sidebar is always visible, so it is dead
+// space. Hidden above 64em only, so mobile navigation still works.
+
+@media screen and (min-width: 64em) {
+  #_navbar { display: none; }
+
+  // The content reserved 128px of top padding to clear the 80px navbar.
+  // With the navbar hidden that is just a gap above the page title.
+  main.content { padding-top: 3rem; }
+}
+
+.cover-overlay-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(14, 19, 26, 0.86) 0%,
+      rgba(14, 19, 26, 0.7) 38%,
+      rgba(14, 19, 26, 0.48) 75%
+    );
+  }
+}
+
+.cover-overlay-content {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: #fff;
+
+  a { color: #fff; }
 }

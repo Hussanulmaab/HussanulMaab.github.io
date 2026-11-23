@@ -46,3 +46,6 @@ _zip
 
 /assets/js/*hydejack-*
 /_sass/*/__*__/*
+
+# Scratch folder created by the Claude desktop app -- not part of the site
+Claude outputs/

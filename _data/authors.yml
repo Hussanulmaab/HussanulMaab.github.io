@@ -1,16 +1,17 @@
 author1:
-  name:              Hussan ul Maab
-  email:             maab431@khu.ac.kr
+  name: Hussan ul Maab
+  email: maab431@khu.ac.kr
 
-  about:             |
+  about: |
     Master's researcher in the Department of Electronics and Information
     Convergence Engineering at **Kyung Hee University**, advised by
-    Prof. Hyundong Shin. I work on **quantum error correction** — currently
-    tensor network decoders for three-dimensional color codes.
+    Prof. Hyundong Shin. My primary research is on quantum error correction and Fault Tolerant Quantum Computing. I am to graduate from masters and Communications
+    and Quantum Information Lab (CQILAB) in February 2027 
+    and prospectively join Quantum Computing Lab under professor Jeong San Kim from March 
+    2027 to August 2027 before commencing my PhD program in Fall 2027.
 
   social:
-    github:          Hussanulmaab
-    email:           maab431@khu.ac.kr
-    # linkedin:      <firstname-lastname-string>
-    # twitter:       <username>
-    # rss:           https://blog.maab.dev/feed.xml
+    github: Hussanulmaab
+    email: maab431@khu.ac.kr
+    linkedin: hussan-ul-maab-92a595222
+    scholar: "https://scholar.google.com/citations?user=f6XramQAAAAJ&hl=en"

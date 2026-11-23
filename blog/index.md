@@ -1,6 +1,6 @@
 ---
 layout: list
-title: Blog
+title: Blogs
 permalink: /blog/
 description: >
   Occasional posts, mostly interactive, about quantum error correction,
